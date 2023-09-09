@@ -8,9 +8,14 @@ const app = express();
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-app.get("/historical-balances", (req, res) => {
-  const historicalBalance = getHistoricalBalance();
-  return res.json(historicalBalance);
+app.get("/historical-balances", async (req, res) => {
+  try {
+    const historicalBalance = await getHistoricalBalance(); 
+    return res.json(historicalBalance);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 
