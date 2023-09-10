@@ -15,7 +15,7 @@ export function getTransactions(from: string, to: string) {
   .then((response) => {
     let dataFromAPI = response.data.transactions;
     let filteredData = dataFromAPI.filter((data: object) => {
-      return data.date >= from && data.date <= to && data.status !== "CANCELLED"
+      return data.date >= from && data.status !== "CANCELLED"
     })
     return filteredData;
   })

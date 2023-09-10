@@ -11,8 +11,8 @@ export function getBalance() {
     }
   })
   .then((response) => {
-    const data = response.data;
-    console.log(data)
+    console.log(response.data)
+    return response.data;
   })
   .catch((error) => {
     console.log(error)
