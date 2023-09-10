@@ -1,4 +1,4 @@
-import { getHistoricalBalance } from "../../src/services/getHistoricalBalances";
+import { getHistoricalBalance } from "../../src/services/getTransactions";
 
 describe("getHistoricalBalance", () => {
   it("should return the boilerplate object", () => {
