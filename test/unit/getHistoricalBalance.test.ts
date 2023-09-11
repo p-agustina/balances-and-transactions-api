@@ -2,6 +2,9 @@ import { getHistoricalBalances } from "../../src/services/getHistoricalBalances"
 
 describe("getHistoricalBalance", () => {
   it("should return the boilerplate object", () => {
+    let transactionData =
+
+
     const res = getHistoricalBalances();
     expect(res).toEqual( [ 
       { 

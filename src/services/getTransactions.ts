@@ -17,6 +17,7 @@ export function getTransactions(from: string, to: string) {
     let filteredData = dataFromAPI.filter((data: object) => {
       return data.date >= from && data.status !== "CANCELLED"
     })
+    console.log(filteredData)
     return filteredData;
   })
   .catch((error) => {
