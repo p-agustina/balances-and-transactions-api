@@ -12,11 +12,11 @@ const app = express();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/historical-balances", async (req, res) => {
-  console.log("LLLLLLLLLLLLL")
+  console.log("AAAAAAAAAAABBBBBBBB")
 
   const currentDate = '2022-06-30T23:59:59.577Z'
 
-  const { from, to } = req.query as { from: string; to: string};
+  const { from, to, sort } = req.query as { from: string; to: string; sort: string};
 
   const fromISO = (new Date(from)).toISOString();
   const toISO = (new Date(to)).toISOString();
@@ -28,7 +28,7 @@ app.get("/historical-balances", async (req, res) => {
     const balanceData = await getBalance();
     // console.log(balanceData)
 
-    const historicalBalances = getHistoricalBalances(transactionsData, balanceData, toISO)
+    const historicalBalances = getHistoricalBalances(transactionsData, balanceData, toISO, sort)
     
     return res.json(historicalBalances);
   } catch (error) {

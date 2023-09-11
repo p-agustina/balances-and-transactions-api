@@ -1,20 +1,26 @@
-export function getHistoricalBalances(transactionsData: Array<string>, balanceData: Array<string>, to: string) {
-    // return data.date >= from && data.date <= to && data.status !== "CANCELLED"
-    const currentDate = '2022-06-30T23:59:59.577Z'
+export function getHistoricalBalances(transactionsData: Array<string>, balanceData: Array<string>, to: string, sort: string) {
+  let historicalBalances = [];
+  let sortedTransactions = transactionsData.sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
-    let historicalBalances = transactionsData
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-    // .map(transaction => {
-    //     console.log(transaction)
-    //     transaction.amount
-    // })
-
-    return historicalBalances
+  let currentDate = new Date("2022-06-30T23:59:59.577Z");
+  let dailyBalance = balanceData.amount;
+  for (const transaction of sortedTransactions) {
+      
+    while (currentDate >= new Date(transaction.date)) {
+        
+        dailyBalance -= transaction.amount;
+        historicalBalances.push({
+            date: currentDate.toISOString().substring(0, 10),
+            amount: dailyBalance,
+            currency: transaction.currency,
+        });
+        currentDate = new Date(currentDate.getTime() - 24 * 60 * 60 * 1000);
+    }
   }
-  
-
-//   { 
-//     "date": "05/01/2022", 
-//     "amount": 12345, 
-//     "currency": "EUR" 
-// }, 
+  let filteredBalances = historicalBalances.filter((balance) => {
+    return new Date(balance.date) <= new Date(to);
+  });
+  return filteredBalances;
+}
