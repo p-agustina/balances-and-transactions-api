@@ -5,15 +5,15 @@ const apiKey = process.env.apiKey;
 
 
 export function getTransactions(from: string, to: string) {
-  const query = `from=${from}&to=${to}`;
 
-  return axios.get(apiURL + "?" + query, {
+  return axios.get(apiURL, {
     headers: {
       'x-api-key': `${apiKey}`, 
     }
   })
   .then((response) => {
     let dataFromAPI = response.data.transactions;
+    console.log(dataFromAPI)
     let filteredData = dataFromAPI.filter((data: object) => {
       return data.date >= from && data.status !== "CANCELLED"
     })
