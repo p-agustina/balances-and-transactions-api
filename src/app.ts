@@ -12,7 +12,6 @@ const app = express();
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/historical-balances", async (req, res) => {
-  console.log("AAAAAAAAAAABBBBBBBB")
 
   const currentDate = '2022-06-30T23:59:59.577Z'
 

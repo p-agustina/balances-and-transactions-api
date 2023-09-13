@@ -43,6 +43,12 @@ export function getHistoricalBalances(transactionsData: Transaction[], balanceDa
   let filteredBalances = historicalBalances.filter((balance) => {
     return new Date(balance.date) <= new Date(to);
   });
-  console.log("ACA ESTA EL RESULTADO DE getHistoricalBalances", filteredBalances)
+  
+  if (sort === 'desc') {
+    filteredBalances.sort((a, b) => new Date(b.date) - new Date(a.date));
+  } else {
+    filteredBalances.sort((a, b) => new Date(a.date) - new Date(b.date));
+  }
+  console.log("Return from getHistoricalBalances", filteredBalances)
   return filteredBalances;
 }

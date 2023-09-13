@@ -34,8 +34,7 @@ The response will be a list of balances for the specified date range in the foll
 
 - Installation
 - Usage
-- Error Handling
-- Logging
+- Assumptions and Explanations
 - Unit Tests
 - Contributing
 
@@ -74,15 +73,12 @@ Example request:
 GET http://localhost:PORT/historical-balances?from=2022-01-03&to=2022-01-05&sort=desc
 ```
 
-## Some clarifications
+## Assumptions and Explanations
+Here are some assumptions and explanations regarding the code:
 
+1. Current Date and Time: The code uses a default current date and time of '2022-06-30T23:59:59.577Z'. So transactions done before that time will affect the current balance. 
 
-
-## Error Handling
-The application includes proper error handling to ensure data integrity. If an error occurs during the API request, you will receive a 500 Internal Server Error response with a JSON error message.
-
-## Logging
-The application implements logging for key events and errors. You can find logs in the console to track the application's activity.
+2. Excluding Cancelled Transactions: The code filters out cancelled transactions from the historical balance calculation. This ensures that only non-cancelled transactions affect the daily balance.
 
 ## Unit Tests
 Unit tests are included to ensure the reliability of the code. To run the unit tests, use the following command:

@@ -99,7 +99,7 @@
         }
       }
     }
-  },    
+  },
   "/historical-balances": {  
   "get": {
     "security": [
@@ -169,8 +169,8 @@
       }
     }
   }
-}
-},  
+},
+  
   "components": {
     "securitySchemes": {
       "xApiKey": {
