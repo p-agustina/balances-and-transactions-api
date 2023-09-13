@@ -74,6 +74,10 @@ Example request:
 GET http://localhost:PORT/historical-balances?from=2022-01-03&to=2022-01-05&sort=desc
 ```
 
+## Some clarifications
+
+
+
 ## Error Handling
 The application includes proper error handling to ensure data integrity. If an error occurs during the API request, you will receive a 500 Internal Server Error response with a JSON error message.
 

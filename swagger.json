@@ -99,7 +99,78 @@
         }
       }
     }
-  },
+  },    
+  "/historical-balances": {  
+  "get": {
+    "security": [
+      {
+        "xApiKey": []
+      }
+    ],
+    "description": "Get historical balances for a specific date range.",
+    "parameters": [
+      {
+        "name": "from",
+        "in": "query",
+        "description": "Start date of the date range (e.g., 2022-01-03).",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      {
+        "name": "to",
+        "in": "query",
+        "description": "End date of the date range (e.g., 2022-01-05).",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      {
+        "name": "sort",
+        "in": "query",
+        "description": "Sorting order ('asc' or 'desc').",
+        "required": true,
+        "schema": {
+          "type": "string",
+          "enum": ["asc", "desc"]
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "OK",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "amount": {
+                    "type": "number"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "enum": ["EUR"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+},  
   "components": {
     "securitySchemes": {
       "xApiKey": {
